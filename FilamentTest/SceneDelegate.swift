@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = .init(windowScene: scene)
         
-        window?.rootViewController = FilamentView()
+        window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
     }
 

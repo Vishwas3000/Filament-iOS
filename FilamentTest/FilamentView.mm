@@ -69,26 +69,32 @@ static const uint16_t CUBE_INDICES[] = {
     4,5,1, 1,0,4   // bottom
 };
 
+// Called when initializing programmatically
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupMetal];
+    }
+    return self;
+}
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+-(void)setupMetal{
     // Create the Filament engine - explicitly specify Metal backend
     _engine = Engine::create(Engine::Backend::METAL);
     
     // Set up Metal view
     id<MTLDevice> device = MTLCreateSystemDefaultDevice();
-    MTKView *mtkView = [[MTKView alloc] initWithFrame: self.view.bounds device:device];
+    MTKView *mtkView = [[MTKView alloc] initWithFrame: self.bounds device:device];
     mtkView.delegate = self;
     mtkView.preferredFramesPerSecond = 60;
-    [self.view addSubview:mtkView];
+    [self addSubview:mtkView];
     
     mtkView.translatesAutoresizingMaskIntoConstraints = NO;
     [NSLayoutConstraint activateConstraints:@[
-        [mtkView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
-        [mtkView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
-        [mtkView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
-        [mtkView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [mtkView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [mtkView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+        [mtkView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [mtkView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
     ]];
     
     // Create Filament core components
