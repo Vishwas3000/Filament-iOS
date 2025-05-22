@@ -9,9 +9,12 @@
 #define FilamentView_h
 
 #import <UIKit/UIKit.h>
+#import <ARKit/ARKit.h>
 
 @interface FilamentView : UIView
 
+- (instancetype)initWithFrame:(CGRect)frame
+                      session:(ARSession *)session;
 
 @end
 

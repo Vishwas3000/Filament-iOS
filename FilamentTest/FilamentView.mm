@@ -30,6 +30,9 @@ using namespace utils;
 
 @interface FilamentView() <MTKViewDelegate>
 
+// define properties here
+@property (nonatomic, nullable, weak) ARSession *session;
+
 @end
 
 @implementation FilamentView{
@@ -75,6 +78,13 @@ static const uint16_t CUBE_INDICES[] = {
     if (self) {
         [self setupMetal];
     }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame session:(ARSession *)session {
+    self = [self initWithFrame:frame];
+    _session = session;
+    
     return self;
 }
 
@@ -274,4 +284,6 @@ static const uint16_t CUBE_INDICES[] = {
         Engine::destroy(&_engine);
     }
 }
+
+
 @end
